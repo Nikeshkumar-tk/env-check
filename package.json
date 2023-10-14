@@ -1,0 +1,32 @@
+{
+  "name": "environment-variable-validator",
+  "version": "1.0.2",
+  "description": "Validating type of env variables",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx ts-node src",
+    "build": "tsup",
+    "start": "node dist/index.js"
+  },
+  "author": "nikeshkumartk",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Nikeshkumar-tk/env-check.git"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.1",
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "tslog": "^4.9.2"
+  }
+}
