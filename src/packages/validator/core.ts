@@ -1,5 +1,6 @@
 import dotenv from "dotenv"
 import logger from "../logger"
+
 dotenv.config()
 
 type variableTypes = "string" | "number" | "boolean"
