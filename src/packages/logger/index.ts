@@ -1,7 +1,7 @@
 import { Logger } from "tslog"
 
 const logger = new Logger({
-    prettyLogTemplate: "{{yyyy}}.{{mm}}.{{dd}} {{hh}}:{{MM}}:{{ss}}:{{ms}}\t{{logLevelName}}\t[{{name}}]\t",
+    prettyLogTemplate: "{{yyyy}}.{{mm}}.{{dd}} {{hh}}:{{MM}}:{{ss}}:{{ms}}\t{{logLevelName}}\t",
     prettyErrorTemplate: "\n{{errorName}} {{errorMessage}}\nerror stack:\n{{errorStack}}",
     prettyErrorStackTemplate: "  • {{fileName}}\t{{method}}\n\t{{filePathWithLine}}",
     prettyErrorParentNamesSeparator: ":",
@@ -18,6 +18,7 @@ const logger = new Logger({
         WARN: ["bold", "yellow"],
         ERROR: ["bold", "red"],
         FATAL: ["bold", "redBright"],
+        SUCCESS:["bold", "green"]
       },
       dateIsoStr: "white",
       filePathWithLine: "white",

@@ -1,3 +1,3 @@
-import { validate } from "./packages";
+import { validate as validate_env_variable } from "./packages";
 
-export { validate }
+export { validate_env_variable }
