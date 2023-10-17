@@ -1,6 +1,6 @@
 {
   "name": "environment-variable-validator",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Validating type of env variables",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
