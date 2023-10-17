@@ -25,4 +25,4 @@ If you prefer to use npm, open your terminal and run the following command:
 
 If you prefer Yarn, open your terminal and run the following command:
 
-    yarn  add  environment-variable-validator
+    yarn add environment-variable-validator
