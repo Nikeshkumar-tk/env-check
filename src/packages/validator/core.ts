@@ -4,7 +4,7 @@ import { logErrorMessage } from "../logger/error"
 
 dotenv.config()
 
-export type variableTypes = "string" | "number" | "boolean"
+export type variableTypes = "string" | "number" | "boolean" | "email"
 
 type ValidatorProps = {
     [key: string]: variableTypes
@@ -17,7 +17,8 @@ type ValidatorFunctionProps = {
 /**
  * 
  * @param params 
- * @returns 
+ * @description validate environment variables
+ * @returns null 
  */
 export function validate(params: ValidatorProps) {
     logger.info("validating env variables...")
@@ -30,23 +31,23 @@ export function validate(params: ValidatorProps) {
             logErrorMessage({ type: "null_check_error", variableName: variable })
         }
 
+        const validationProps = {
+            variable: envVariable
+        }
+
+        //Boolean validation
         if (type === "boolean") {
-            validateBooleanVariable({ variable: envVariable })
+            validateBooleanVariable(validationProps)
         }
 
         //validating number type
         if (type === "number") {
-            if (isNaN(envVariable)) {
-                logErrorMessage({ type: "env_validation_error", variableName: variable, expectedType: "number", currentType: "string", message: "Invalid Type" })
-            }
+            validateNumberVariable(validationProps)
         }
 
         //validating string type
         if (type === "string") {
-            const parsedEnv = parseInt(envVariable)
-            if (!isNaN(parsedEnv)) {
-                logErrorMessage({ type: "env_validation_error", variableName: variable, expectedType: "string", currentType: "number", message: "Invalid Type" })
-            }
+            validateStringVariable(validationProps)
         }
     }
     logger.log(1, "SUCCESS", "Env validations completed")
@@ -56,12 +57,43 @@ export function validate(params: ValidatorProps) {
 /**
  * 
  * @param env_var_data 
+ * @description validation for boolean variable
  * @returns 
  */
 function validateBooleanVariable(env_var_data: ValidatorFunctionProps) {
 
     if (env_var_data.variable !== "true" && env_var_data.variable !== "false") {
         logErrorMessage({ type: "env_validation_error", currentType: "string", expectedType: "boolean", variableName: env_var_data.variable, message: "" })
+    }
+    return
+}
+
+
+/**
+ * 
+ * @param env_var_data 
+ * @description validation for number variable
+ * @returns null
+ */
+function validateNumberVariable(env_var_data: ValidatorFunctionProps) {
+    if (isNaN(env_var_data.variable)) {
+        logErrorMessage({ type: "env_validation_error", variableName: env_var_data.variable, expectedType: "number", currentType: "string", message: "Invalid Type" })
+    }
+    return
+}
+
+
+/**
+ * 
+ * @param env_var_data 
+ * @description validation for string variable
+ * @returns null
+ */
+
+function validateStringVariable(env_var_data: ValidatorFunctionProps) {
+    const parsedEnv = parseInt(env_var_data.variable)
+    if (!isNaN(parsedEnv)) {
+        logErrorMessage({ type: "env_validation_error", variableName: env_var_data.variable, expectedType: "string", currentType: "number", message: "Invalid Type" })
     }
     return
 }
