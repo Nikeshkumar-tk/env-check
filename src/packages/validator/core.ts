@@ -4,10 +4,10 @@ import { logErrorMessage } from "../logger/error"
 
 dotenv.config()
 
-export type variableTypes = "string" | "number" | "boolean" | "email"
+export type VariableTypes = "string" | "number" | "boolean" | "email"
 
 type ValidatorProps = {
-    [key: string]: variableTypes
+    [key: string]: VariableTypes
 }
 
 type ValidatorFunctionProps = {
@@ -63,7 +63,14 @@ export function validate(params: ValidatorProps) {
 function validateBooleanVariable(env_var_data: ValidatorFunctionProps) {
 
     if (env_var_data.variable !== "true" && env_var_data.variable !== "false") {
-        logErrorMessage({ type: "env_validation_error", currentType: "string", expectedType: "boolean", variableName: env_var_data.variable, message: "" })
+        let currentType:VariableTypes = "" as VariableTypes
+        if (isNaN(env_var_data.variable)) {
+            currentType = "string"
+        }else{
+            currentType = "number"
+        }
+
+        logErrorMessage({ type: "env_validation_error", currentType, expectedType: "boolean", variableName: env_var_data.variable, message: "" })
     }
     return
 }

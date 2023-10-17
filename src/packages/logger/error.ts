@@ -1,11 +1,11 @@
 import logger from ".";
-import { variableTypes } from "../validator";
+import { VariableTypes } from "../validator";
 import { ERROR_CODE_MESSAGE_MAPPER } from "./contants";
 
 type EnvValidationErrorType = {
     type: "env_validation_error"
-    expectedType: variableTypes
-    currentType: variableTypes
+    expectedType: VariableTypes
+    currentType: VariableTypes
 }
 
 type BasicErrorLogType = {
